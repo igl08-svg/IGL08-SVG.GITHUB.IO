@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bacheca 2E</title>
+
+<style>
+body {
+  font-family: 'Oswald', sans-serif;
+  background-color: red;
+  color: black;
+  padding: 40px;
+  font-size: 24px;
+  overflow: hidden;
+}
+
+.box {
+  background-color: white;
+  border: 2px solid #333;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: 35px;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+}
+
+#mainContent {
+  display: none;
+}
+
+.commentBox {
+  border: 1px solid #333;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+</style>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- LOGIN -->
+<div id="loginDiv">
+  <h2>Inserisci la password</h2>
+  <input type="password" id="passwordInput">
+  <button id="loginBtn">Entra</button>
+  <p id="loginError" style="color:red;"></p>
+</div>
+
+<!-- CONTENUTO NASCOSTO -->
+<div id="mainContent">
+
+  <h1>Bacheca 2E</h1>
+
+  <div class="box">
+    <p>Sito nostro, nessuno deve fare parola.</p>
+  </div>
+
+  <div class="box">
+    <form id="commentForm">
+      <input type="text" id="commentInput" placeholder="Scrivi..." required>
+      <button>Invia</button>
+    </form>
+    <div id="commentsSection"></div>
+  </div>
+
+</div>
+
+<script>
+const correctPassword = "2e la migliore";
+
+const loginBtn = document.getElementById("loginBtn");
+const passwordInput = document.getElementById("passwordInput");
+const loginDiv = document.getElementById("loginDiv");
+const mainContent = document.getElementById("mainContent");
+const loginError = document.getElementById("loginError");
+
+loginBtn.onclick = () => {
+  if (passwordInput.value === correctPassword) {
+    loginDiv.style.display = "none";
+    mainContent.style.display = "block";
+    document.body.style.overflow = "auto";
+  } else {
+    loginError.textContent = "Password sbagliata!";
+  }
+};
+
+document.getElementById("commentForm").onsubmit = e => {
+  e.preventDefault();
+  const text = commentInput.value.trim();
+  if (!text) return;
+  const div = document.createElement("div");
+  div.className = "commentBox";
+  div.textContent = text;
+  commentsSection.appendChild(div);
+  commentInput.value = "";
+};
+</script>
+
+</body>
+</html>
